@@ -52,16 +52,16 @@ function updateFilter(){
         filteredData = filteredData.filter(row => row.datetime === date);
       }
     if (city) {
-        filteredData = filteredData.filter(row => row.datetime === date);
+        filteredData = filteredData.filter(row => row.datetime === city);
       }
     if (state) {
-        filteredData = filteredData.filter(row => row.datetime === date);
+        filteredData = filteredData.filter(row => row.datetime === state);
       }
     if (country) {
-        filteredData = filteredData.filter(row => row.datetime === date);
+        filteredData = filteredData.filter(row => row.datetime === country);
       }
     if (shape) {
-        filteredData = filteredData.filter(row => row.datetime === date);
+        filteredData = filteredData.filter(row => row.datetime === shape);
       }
     else {
       delete filters[filterId];

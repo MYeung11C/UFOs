@@ -30,7 +30,12 @@ var filter = {};
 function updateFilter(){
 
     // 4a. Save the element that was changed as a variable.
-  let changedElement = d3.select(this);
+    let date = d3.select("#datetime").property("value");
+    let city = d3.select("#city").property("value");
+    let state = d3.select("#state").property("value");
+    let country = d3.select("#country").property("value");
+    let shape = d3.select("#shape").property("value");
+    let filteredData = tableData;
   
     // 4b. Save the value that was changed as a variable.
   let elementValue = changedElement.property("value");
@@ -42,12 +47,26 @@ function updateFilter(){
   
     // 5. If a filter value was entered then add that filterId and value
     // to the filters list. Otherwise, clear that filter from the filters object.
-  if (elementValue) {
-      filters[filterId] = elementValue;
-    }
+ 
+    if (date) {    
+        filteredData = filteredData.filter(row => row.datetime === date);
+      }
+    if (city) {
+        filteredData = filteredData.filter(row => row.datetime === date);
+      }
+    if (state) {
+        filteredData = filteredData.filter(row => row.datetime === date);
+      }
+    if (country) {
+        filteredData = filteredData.filter(row => row.datetime === date);
+      }
+    if (shape) {
+        filteredData = filteredData.filter(row => row.datetime === date);
+      }
     else {
       delete filters[filterId];
     }
+    
  
   
     // 6. Call function to apply all filters and rebuild the table
@@ -73,43 +92,9 @@ function updateFilter(){
 }
   
   // 2. Attach an event to listen for changes to each filter
-  function handleClick() {
-    // Grab the datetime value from the filter
-    let date = d3.select("#datetime").property("value");
-    let city = d3.select("#city").property("value");
-    let state = d3.select("#state").property("value");
-    let country = d3.select("#country").property("value");
-    let shape = d3.select("#shape").property("value");
-    let filteredData = tableData;
-  
-     // Check to see if a date was entered and filter the
-    // data using that date.
-    if (date) {
-      // Apply `filter` to the table data to only keep the
-      // rows where the `datetime` value matches the filter value
-      filteredData = filteredData.filter(row => row.datetime === date);
-    }
-    if (city) {
-        filteredData = filteredData.filter(row => row.datetime === date);
-    }
-    if (state) {
-        filteredData = filteredData.filter(row => row.datetime === date);
-    }
-    if (country) {
-        filteredData = filteredData.filter(row => row.datetime === date);
-    }
-    if (shape) {
-        filteredData = filteredData.filter(row => row.datetime === date);
-    }
-  
-     // Rebuild the table using the filtered data
-    // @NOTE: If no date was entered, then filteredData will
-    // just be the original tableData.
-    buildTable(filteredData);
-  }
-  
-  // Attach an event to listen for the form button
-  d3.selectAll("#filter-btn").on("click", handleClick);
+
+  d3.selectAll("input").on("change", updateFilters);
   
   // Build the table when the page loads
   buildTable(tableData);
+

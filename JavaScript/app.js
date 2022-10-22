@@ -50,16 +50,16 @@ function updateFilter(){
         filteredData = filteredData.filter(row => row.datetime === date);
       }
     if (city) {
-        filteredData = filteredData.filter(row => row.datetime === city);
+        filteredData = filteredData.filter(row => row.city === city);
       }
     if (state) {
-        filteredData = filteredData.filter(row => row.datetime === state);
+        filteredData = filteredData.filter(row => row.state === state);
       }
     if (country) {
-        filteredData = filteredData.filter(row => row.datetime === country);
+        filteredData = filteredData.filter(row => row.country === country);
       }
     if (shape) {
-        filteredData = filteredData.filter(row => row.datetime === shape);
+        filteredData = filteredData.filter(row => row.shape === shape);
       }
     else {
       delete filters[filterId];
